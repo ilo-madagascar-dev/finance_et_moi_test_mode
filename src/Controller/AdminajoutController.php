@@ -33,19 +33,19 @@ class AdminajoutController extends AbstractController
         $form=$this->createForm(AdminType::class,$admin);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            dd('form submitted');
            $encodepassword=$passwordEncoder->encodePassword($user,$admin->getPassword());
            $user->setEmail($admin->getEmail());
            $user->setRoles(['ROLE_ADMIN']);
            $user->setPassword($encodepassword);
            $user->setDateCreationUtilisateur(new DateTime());
            $user->setActive(true);
-        $this->em->persist($user);
-        $admin->setUser($user);
-        $admin->setPassword($encodepassword);
-        $this->em->persist($admin);
-        $this->em->flush();
+            $this->em->persist($user);
+            $admin->setUser($user);
+            $admin->setPassword($encodepassword);
+            $this->em->persist($admin);
+            $this->em->flush();
 
-        dd($admin);
 
         return $this->redirectToRoute('app_login');
         }
