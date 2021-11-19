@@ -33,7 +33,7 @@ class AdminajoutController extends AbstractController
         $form=$this->createForm(AdminType::class,$admin);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            dd('form submitted');
+            //dd('form submitted');
            $encodepassword=$passwordEncoder->encodePassword($user,$admin->getPassword());
            $user->setEmail($admin->getEmail());
            $user->setRoles(['ROLE_ADMIN']);
