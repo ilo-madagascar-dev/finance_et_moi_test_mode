@@ -45,6 +45,8 @@ class AdminajoutController extends AbstractController
         $this->em->persist($admin);
         $this->em->flush();
 
+        dd($admin);
+
         return $this->redirectToRoute('app_login');
         }
 
